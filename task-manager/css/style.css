@@ -38,6 +38,8 @@ input:focus, textarea:focus, select:focus{
 }
 #new-task{
     width: 70%;
+    border: none;
+    transition: background 0.5s ease;
 }
 #add{
     width: 30%;
@@ -51,5 +53,9 @@ input:focus, textarea:focus, select:focus{
     color: #fff;
     transition: 0.5s;
 }
-
+#sel-task{
+    margin-top: 3%;
+    width: 100%;
+    height: 44.5vh;
+}
 /*animações e seletores css*/
