@@ -1,43 +1,46 @@
-var input = window.document.querySelector('#new-task');
-var button = window.document.querySelector('#add');
-var sel = window.document.querySelector('#sel-task')
-var allTtasks = [];
+var input = window.document.querySelector('#new-task');//valor da entrada
+var button = window.document.querySelector('#add');//boato de adicionar tarefas
+var sel = window.document.querySelector('#sel-task');//select 
+var allTtasks = [];//array tarefas
 
 //validações de campos
-button.addEventListener('click', function() {
+button.addEventListener('click', function () {
     if (input.value.length == 0) {
-        alert('Por favor, preencha os campos corretamentes')
+        alert('Por favor, preencha os campos corretamente!')
         input.style.background = '#FFC1C4';
 
         //define um atraso
-        setTimeout(function() {
+        setTimeout(function () {
             input.style.background = '';//remove a cor do fundo
         }, 500);
-    }else{
+    } else {
         input.style.background = '#D2FFD4';
 
-        setTimeout(function(){
+        setTimeout(function () {
             input.style.background = ''
         }, 500);
 
         if (allTtasks.includes(input.value)) {
             prompt('Já encontrado na lista!\nDeseja substituir?\n1-Sim\n2-Não')
-            if (prompt.value == 2) {
+            if (prompt.value == 1) {
                 //break
+
+            } else if (prompt.value == 2) {
+
             }
         }
         allTtasks.push(input.value);
-        input.value = ''
+        input.value = ''//limpa a input
 
-        sel.innerHTML = ''
+        sel.innerHTML = '';//limpa as options
 
-        allTtasks.forEach(function(task) {
-        var item = window.document.createElement('option');
-        item.textContent = task;
-        sel.appendChild(item)
+        allTtasks.forEach(function (task) {
+            var item = window.document.createElement('option');//cria um elemento (option)
+            item.textContent = task;//define o contexto
+            sel.appendChild(item)//adiciona como filho ao sel
         });
 
-       input.focus();
+        input.focus();//mantem a input com foco
     }
 });
 
