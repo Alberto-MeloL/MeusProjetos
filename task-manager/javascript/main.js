@@ -1,6 +1,7 @@
 var input = window.document.querySelector('#new-task');//valor da entrada
 var button = window.document.querySelector('#add');//boato de adicionar tarefas
 var sel = window.document.querySelector('#sel-task');//select 
+var remove = window.document.querySelector('#removed');
 var allTtasks = [];//array tarefas
 
 //validações de campos
@@ -8,6 +9,7 @@ button.addEventListener('click', function () {
     if (input.value.length == 0) {
         alert('Por favor, preencha os campos corretamente!')
         input.style.background = '#FFC1C4';
+        input.focus();
 
         //define um atraso
         setTimeout(function () {
@@ -39,8 +41,41 @@ button.addEventListener('click', function () {
             item.textContent = task;//define o contexto
             sel.appendChild(item)//adiciona como filho ao sel
         });
-
         input.focus();//mantem a input com foco
     }
+
 });
 
+//remoção de tarefas
+remove.addEventListener('click', function () {
+    if (sel.value == 0) {
+        alert('Ainda não há nenhuma tarefa.')
+    } else {
+        var valorPrompt = prompt('Digite o nome do produto a ser deletado.');
+
+        //encontra o indice do valor no arry
+        var index = allTtasks.indexOf(valorPrompt);
+
+        if (index !== -1) {
+            //remove o elemento pelo indice encontrado
+            allTtasks.splice(index, 1);
+            //sintaxe array.splice(start(index), deleteCount(1), item1, item2, ...);
+            window.document.querySelector('#message').textContent = 'Produto removido!';
+            window.document.querySelector('#message').style.color = '#008000';
+            window.document.querySelector('#message').style.display = 'block';
+
+            setTimeout(function () {
+                window.document.querySelector('#message').style.display = 'none';
+            }, 2000);
+            //atualiza as options
+            sel.innerHTML = ''
+            allTtasks.forEach(function (task) {
+                var item = window.document.createElement('option');
+                item.textContent = task;
+                sel.appendChild(item)
+            });
+        } else {
+            alert(`Produto não encontrado na lista [${valorPrompt}]`);
+        }
+    }
+});
