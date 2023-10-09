@@ -51,7 +51,7 @@ remove.addEventListener('click', function () {
     if (sel.value == 0) {
         alert('Ainda não há nenhuma tarefa.')
     } else {
-        var valorPrompt = prompt('Digite o nome do produto a ser deletado.');
+        var valorPrompt = prompt('Digite a tarefa a ser removida');
 
         //encontra o indice do valor no arry
         var index = allTtasks.indexOf(valorPrompt);
