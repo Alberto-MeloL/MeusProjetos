@@ -1,0 +1,116 @@
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(165, 42, 42, 0.651);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.points{
+    width: 20%;
+    height: 5vh;
+    background-color: #fff;
+    margin-right: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#player_1{
+    width: 50%;
+    height: 5vh;
+    background-color: rgb(236, 73, 73);
+}
+#player_2{
+    width: 50%;
+    height: 5vh;
+    background-color: rgb(68, 142, 252);
+}
+.config{
+    background-color: #ffffff;
+    width: 8%;
+    height: 100vh;
+    margin-right: 9%;
+}
+#reset, #set-up, #start{
+    cursor: pointer;
+}
+img{
+    width: 50%;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+input{
+    display: none;
+    cursor: pointer;
+}
+.board {
+    width: 60%;
+    height: 80vh;
+    background-color: #fff;
+    margin-right: 2%;
+}
+
+.column1 {
+    width: 100%;
+    display: flex;
+}
+
+.column2 {
+    width: 100%;
+    display: flex;
+}
+
+.column3 {
+    width: 100%;
+    display: flex;
+}
+
+.column4 {
+    width: 100%;
+    display: flex;
+}
+
+.column5 {
+    width: 100%;
+    display: flex;
+}
+
+.column6 {
+    width: 100%;
+    display: flex;
+}
+
+.column7 {
+    width: 100%;
+    display: flex;
+}
+
+.column8 {
+    width: 100%;
+    display: flex;
+}
+
+.black-house {
+    width: 15%;
+    height: 10vh;
+    background-color: #000000c9;
+    display: flex;
+}
+
+.white-house {
+    width: 15%;
+    height: 10vh;
+    background-color: #ffffffcb;
+}
+.set-setUP{
+    display: none;
+    height: 100vh;
+    width: 40%;
+}
