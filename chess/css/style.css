@@ -8,6 +8,51 @@ body {
     justify-content: center;
     align-items: center;
 }
+.startMatch{
+    display: none;
+    width: 30%;
+    height: 30%;
+    background: linear-gradient(to right, #ec4949 50%, #448efc 50%);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: ease;
+    opacity: 0;
+    animation: apareceDeCima 1s forwards;
+}
+#namePlayer-1, #namePlayer-2{
+    width: 40%;
+    margin: 0 auto;
+    border: none;
+    border-radius: 3px;
+}
+#namePlayer-1{
+    float: left;
+}
+#namePlayer-2{
+    float: right;
+}
+#okName{
+    margin: 0 auto;
+    width: 40%;
+    margin-top: 89%;
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+}
+
+@keyframes apareceDeCima{
+        0%{
+            top: -5%;
+            opacity: 0;
+        }
+        100%{
+            top: 0;
+            opacity: 1;
+        }
+}
+
 .points{
     width: 20%;
     height: 5vh;
@@ -20,12 +65,12 @@ body {
 #player_1{
     width: 50%;
     height: 5vh;
-    background-color: rgb(236, 73, 73);
+    background-color: #ec4949;
 }
 #player_2{
     width: 50%;
     height: 5vh;
-    background-color: rgb(68, 142, 252);
+    background-color: #448efc;
 }
 .config{
     background-color: #ffffff;
