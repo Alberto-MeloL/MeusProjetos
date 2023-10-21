@@ -36,12 +36,16 @@ body {
 #okName{
     margin: 0 auto;
     width: 40%;
-    margin-top: 89%;
+    margin-top: 45%;
     background-color: #fff;
     border-radius: 5px;
     border: none;
 }
 
+#okName:hover{
+    background-color: rgb(195, 248, 195);
+    transition: 0.5s;
+}
 @keyframes apareceDeCima{
         0%{
             top: -5%;

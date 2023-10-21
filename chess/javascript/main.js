@@ -24,10 +24,14 @@ start.addEventListener('click', function() {
 
 okName.addEventListener('click', function(){
    
+    if (namePlayer1.value.lenght == 0 || namePlayer1.value.lenght == "") {
+        alert("Por favor, preencha os campos corretamente!");
+    }
         startMatch.style.display = 'none';
         namePlayer1.style.display = 'none';
         namePlayer2.style.display = 'none';
         okName.style.display = 'none';
 });
+
 
 //terminar validacoes de campos vazios para comecar a parida<-
