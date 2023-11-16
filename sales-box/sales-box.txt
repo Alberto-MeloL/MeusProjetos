@@ -1,0 +1,11 @@
+/*
+    Sistema de caixa
+
+Contendo ações como:
+
+-Cadastrar produto
+-Vender produto
+-Alterar produto(preço, nome, excluir e quantidade)
+-Logar com sua conta, com uma conta administradora
+
+*/
