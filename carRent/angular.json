@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "EcoSons": {
+    "carRent": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/eco-sons",
+            "outputPath": "dist/car-rent",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "EcoSons:build:production"
+              "buildTarget": "carRent:build:production"
             },
             "development": {
-              "buildTarget": "EcoSons:build:development"
+              "buildTarget": "carRent:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "EcoSons:build"
+            "buildTarget": "carRent:build"
           }
         },
         "test": {
@@ -98,6 +98,6 @@
     }
   },
   "cli": {
-    "analytics": "4f668e47-333a-4ac6-a3a9-2f410a873be2"
+    "analytics": "57fcf837-ae3c-4834-a09d-5696d7f64399"
   }
 }
