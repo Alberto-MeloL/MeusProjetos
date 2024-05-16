@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+ body{
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-global);
+ }
+
+
+ /* definindo cores padrões */
+ :root{
+--verde-azulado: #217463;
+--branco: #FFFFFF;
+--preto: #000000;
+--font-global: Roboto;
+--desfoque: #ffffff67;
+ }
+
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+input{
+  outline: 0;
+  border: none;
+  border-radius: 5px;
+}

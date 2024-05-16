@@ -1,0 +1,70 @@
+.container {
+  width: 100%;
+  height: 85% ;
+  display: flex;
+  flex-direction: column;
+}
+
+.decoracao {
+  width: 35%;
+  height: 35%;
+  background: url('../../../assets/image/decoracao-ondas.png');
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.apresentacao{
+  width: 100%;
+  display: flex;
+flex-direction: column;
+align-items: center;
+opacity: 0;
+animation-name: view;
+animation-duration: 1s;
+animation-fill-mode: forwards;
+animation-timing-function: ease-in-out;
+filter: blur(1px);
+}
+
+
+.vamos-nessa{
+  width: 90%;
+  display: flex;
+  justify-content: end;
+}
+
+.sobre-nos{
+  width: 90%;
+  display: flex;
+  justify-content: start;
+}
+
+
+.informacoes{
+  width: 90%;
+  display: flex;
+  justify-content: end;
+  align-items: start;
+}
+
+.informacoes p{
+  width: 20%;
+  height: 20%;
+}
+
+img{
+  height: 200px;
+}
+
+@keyframes view{
+0%{
+  /* transform: translateX(-100vw); */
+  opacity: 0;
+}100%{
+  /* transform: translateX(0); */
+  opacity: 1;
+  filter: blur(0);
+}
+}
