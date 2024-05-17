@@ -34,6 +34,7 @@ button{
 /* cores padroes do site */
 :root{
   --azul: #11799A;
+  --azul-claro: #5fc0df;
   /* apenas para mater consistencia */
   --branco: #FFFFFF;
   --preto: #000000;

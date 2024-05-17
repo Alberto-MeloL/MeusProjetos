@@ -1,13 +1,12 @@
 .container {
   width: 100%;
-  height: 30vh;
-  background-color: var(--azul);
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.frases{
+.frases {
   width: 100%;
   height: 5vh;
   background-color: var(--branco);
@@ -16,20 +15,68 @@
   align-items: center;
 }
 
-.frases h1{
+.frases h1 {
   color: var(--azul);
 }
 
-.container-buscas{
+.container-buscas {
   width: 100%;
-  height: 100%;
-display: flex;
-flex-direction: column;
-align-items: center;
-margin: 50px;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--azul);
 }
 
-.termos{
+.termos {
   display: flex;
   flex-direction: row-reverse;
+}
+.buscar-endereco {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 3%;
+}
+
+.buscar-endereco input {
+  width: 90%;
+  min-width: 200px;
+  padding: 1%;
+}
+.info-aluguel {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inicio-aluguel {
+  display: flex;
+  flex-direction: column;
+}
+.termino-aluguel {
+  display: flex;
+  flex-direction: column;
+}
+
+.buscar {
+  width: 70%;
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: var(--azul-claro);
+  position: relative;
+  border-radius: 0px 0px 20px 20px;
+}
+
+#btn-buscar {
+  width: 200px;
+  min-width: 120px;
+  height: 30px;
+  border: none;
 }

@@ -12,19 +12,25 @@
     <div class="info-aluguel">
       <div class="inicio-aluguel">
         <label for="data-inicio">Início do aluguel</label>
-        <input type="datetime" id="data-inicio" />
+        <input type="date" id="data-inicio" />
+        <label for="horario-inicio">Horário</label>
+        <input type="time" id="horario-inicio" />
         <!-- <input type=""> -->
       </div>
 
       <div class="termino-aluguel">
-         <label for="data-termino">Término do aluguel</label>
-        <input type="datetime" id="data-termino" />
-      </div>
-
-      <div class="termos">
-        <label for="aceite">Li e concordo com os termos</label>
-        <input type="checkbox" name="aceite" id="aceite">
+        <label for="data-termino">Término do aluguel</label>
+        <input type="date" id="data-termino" />
+        <label for="horario-termino">Horário</label>
+        <input type="time" id="horario-termino" />
       </div>
     </div>
   </div>
+  <div class="buscar">
+    <label for="conf-idade">Confirme sua idade</label>
+    <input type="number" min="1" max="100" id="conf-idade" />
+
+    <button type="submit" id="btn-buscar">Buscar</button>
+  </div>
 </div>
+
