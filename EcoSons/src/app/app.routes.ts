@@ -5,7 +5,7 @@ import {LoginComponent} from './view/login/login.component';
 import {MeusPodcastsComponent} from './view/meus-podcasts/meus-podcasts.component';
 
 export const routes: Routes = [
-  {path: 'pagina-inicial', component: HomeComponent},
+  {path: '', component: HomeComponent},
   {path: 'cadastro', component: CadastroComponent},
   {path: 'login', component: LoginComponent},
   {path: 'meus-podcasts', component: MeusPodcastsComponent},
