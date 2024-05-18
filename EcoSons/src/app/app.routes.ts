@@ -9,4 +9,4 @@ export const routes: Routes = [
   {path: 'cadastro', component: CadastroComponent},
   {path: 'login', component: LoginComponent},
   {path: 'meus-podcasts', component: MeusPodcastsComponent},
-];
+];  
