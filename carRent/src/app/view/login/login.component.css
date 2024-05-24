@@ -1,0 +1,23 @@
+.container{
+  width: 100%;
+  height: 80vh;
+}
+
+.formulario{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-formulario{
+  /* existe alguma ordem aqui ? */
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--azul);
+}

@@ -1,0 +1,11 @@
+<div class="container">
+  <form [formGroup]="formCliente" (ngSubmit)="onSubmit()" class="formulario">
+    <div class="container-formulario">
+      <label for="email">Email</label>
+      <input type="email" formControlName="email" id="email" />
+      <label for="senha">Senha</label>
+      <input type="password" formControlName="senha" id="senha" />
+      <button type="submit" id="btn-cadastrar">Entrar</button>
+    </div>
+  </form>
+</div>
