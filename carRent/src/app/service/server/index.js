@@ -81,18 +81,19 @@ app.post("/alugar",
       data_aluguel,
       data_inicio,
       data_fim,
+      status,
       forma_pagamento,
     } = req.body;
 
     const queryAluguel =
-      "INSERT INTO locacoes (email_usuario, placa_carro, data_aluguel, data_inicio, data_fim, forma_pagamento) VALUES ($1,$2,$3,$4,$5,$6)";
+      "INSERT INTO locacoes (email_usuario, placa_carro, data_aluguel, data_inicio, data_fim,status, forma_pagamento) VALUES ($1,$2,$3,$4,$5,$6,$7)";
 
     // tratar os erros
 
     // jsonp
-
+// formas de pagamento
     try {
-      const resultado = await pool.query(queryAluguel, [email, placa_carro, cpf, data_aluguel, data_inicio, data_fim, 'Pendente']);
+      const resultado = await pool.query(queryAluguel, [email, placa_carro, cpf, data_aluguel, data_inicio, data_fim,status, forma_pagamento]);
       if(resultado.rows.length > 0){
 res.status(201).json({mensagem: "Aluguel em andamento."})
         console.log(`Aluguel realizado com sucesso, sendo: ${data_inicio} á ${data_fim}, feito em ${data_aluguel}`)
@@ -103,6 +104,25 @@ res.status(201).json({mensagem: "Aluguel em andamento."})
       res.status(500).json({mensagem: "Falha ao finalizar o aluguel."})
       console.error(`Houve um erro ao finalizar o aluguel: ${err}`);
     }
+  });
+
+  app.post("/cancelar", async (req, res) => {
+// só é possível cancelar antes de ter usado o carro,e se ja estiver pago resulta em estorno
+
+const {
+  email,
+  placa_carro,
+  cpf,
+  data_aluguel,
+  data_inicio,
+  data_fim,
+  status,
+  forma_pagamento,
+} = req.body;
+
+// const queryCancelar
+// const queryCancelar = "UPDATE locacoes"
+
   });
 
 
