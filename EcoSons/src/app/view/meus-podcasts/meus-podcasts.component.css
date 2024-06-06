@@ -1,0 +1,62 @@
+.container {
+  width: 95%;
+  height: 100%;
+}
+
+.container-meus-podcasts {
+  width: 100%;
+  height: 100%;
+    display: flex;
+  justify-content: center;
+}
+
+.conteudo{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-lateral{
+  width: 30%;
+  height: 50%;
+  background-color: var(--cinza);
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+
+
+.menu-lateral .filtros{
+ display: flex;
+  flex-direction: column;
+list-style: none;
+width: 90%;
+}
+
+.menu-lateral .filtros li{
+  width: 80%;
+  height: 100px;
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+border-top: none;
+border-left: none;
+border-right: none;
+border-bottom: 1px solid var(--desfoque);
+
+}
+
+.menu-lateral .filtros li a{
+  color: var(--preto);
+  font-size: 1.25rem;
+  padding: 20px;
+}
+
+.menu-lateral .filtros li a:hover{
+text-decoration: underline;
+}
+
+/* com grid */

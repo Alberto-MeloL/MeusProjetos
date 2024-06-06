@@ -1,0 +1,34 @@
+header {
+  width: 100%;
+  height: 15vh;
+  background-color: var(--verde-azulado);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logo img{
+  height: 130px;
+}
+
+.saudacoes p{
+  color: var(--branco);
+  font-size: 1.25rem;
+}
+
+.saudacoes p::after{
+  content: "";
+}
+
+.saudacoes p:hover::before{
+  content: "\1F44B";
+}
+
+nav a{
+    color: var(--branco);
+  font-size: 1.25rem;
+}
+nav a:hover{
+  text-decoration: underline;
+}
+
