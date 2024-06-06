@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CadastroService } from '../../service/cadastro.service';
+import { CadastroService } from '../../service/cadastro/cadastro.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,10 +20,14 @@ export class CadastroComponent {
   ) {
     this.formCliente = this.formBuilder.group({
       nome: [''],
-      cpf: [''],
+      sobrenome: [''],
       email: [''],
-      telefone: [''],
+      cep: [''],
+      estado: [''],
       senha: [''],
+      telefone: [''],
+      cpf: [''],
+      cidade: ['']
     });
   }
 

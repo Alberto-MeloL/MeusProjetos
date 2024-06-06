@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
-import { HeaderComponent } from './template/header/header.component';
 import { HomeComponent } from './template/home/home.component';
-import { CadastroService} from './service/cadastro.service';
-import { LoginService } from './service/login.service';
+import { CadastroService} from './service/cadastro/cadastro.service';
+import { LoginService } from './service/login/login.service';
+import {CarrosService} from './service/carros.service';
 
 // lógica dos imports
 
@@ -13,9 +13,10 @@ import { LoginService } from './service/login.service';
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    providers: [CadastroService, LoginService],
+    // para que serve o providers
+    providers: [CadastroService, LoginService, CarrosService],
     // aqui defino meus componentes
-    imports: [RouterOutlet, HeaderComponent, HomeComponent, HttpClientModule]
+    imports: [RouterOutlet, HomeComponent, HttpClientModule]
 })
 export class AppComponent {
   title = 'carRent';

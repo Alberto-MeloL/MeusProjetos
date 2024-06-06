@@ -18,17 +18,17 @@ app.get("/", (req, res) => {
 
 app.post("/cadastro", async (req, res) => {
   // recebendo dados
-  const { nome, cpf, telefone, email, senha } = req.body;
+  const {cep, estado, sobrenome, nome, cpf, telefone, email, senha } = req.body;
 
 const senhaHash = await bcrypt.hash(senha, saltRounds);
 
   //futuramente criar visões
   const queryCadastro =
-    "INSERT INTO cliente ( nome_cliente, cpf_cliente, telefone_cliente,email_cliente, senha_cliente)" +
+    "INSERT INTO cliente ( cep_cliente, email_cliente, cidade_cliente, estado_cliente, sobrenome_cliente, nome_cliente, celular_cliente, senha_cliente)" +
     "VALUES($1, $2, $3, $4, $5)";
 
   try {
-  const resultado = await pool.query(queryCadastro, [nome, cpf, telefone, email, senhaHash]);
+  const resultado = await pool.query(queryCadastro, [nome, cpf, telefone, email, senhaHash, sobrenome, cep, estado]);
     console.log(resultado);
   res.status(201).json(resultado.rows[0]);
 
@@ -69,6 +69,21 @@ else{
 console.error('Houve um erro ao realizar login', err);
 res.status(505).json({mensagem : 'Erro no login'})
 }
+});
+
+
+app.get("/locacoes", async (req,res) => {
+
+  const queryLocacoes = "SELECT * FROM carro;"
+
+  try {
+const { rows } = await pool.query(queryLocacoes);
+console.log(`Listagem ${rows}`);
+res.status(200).json(rows);
+  } catch (err) {
+console.error(`Erro ao listar carros do banco de dados ${err}`);
+res.status(500).json({mensagem: 'Erro ao listar.'});
+  }
 });
 
 app.listen(PORT, () => {

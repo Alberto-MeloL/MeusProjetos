@@ -1,64 +1,25 @@
+<app-header-usuario></app-header-usuario>
 <div class="container">
-  <div class="carros">
-    <div class="locacoes">
-      <img src="../../../assets/image/carro.png" alt="">
-      <p>blablablalblalbalbblalbalblab</p>
-    </div>
-  </div>
+  <div class="container-carros">
+    <div class="carro" *ngFor="let carro of carros">
+      <div class="img-carro">
+        <img src="assets/image/porsche.png" alt="Imagem carro" />
+      </div>
 
-  <div class="carros">
-    <div class="locacoes">
-      <img src="../../../assets/image/carro.png" alt="">
-      <p>blablablalblalbalbblalbalblab</p>
-    </div>
-  </div>
+      <ul class="informacoes">
+        <li>{{ carro.tipo_carro }}</li>
+        <li>{{ carro.modelo_carro }}</li>
+        <li>{{carro.placa_carro}}</li>
+        <li>{{carro.ano_carro}}</li>
+        <li>{{carro.disponibilidade_carro}}</li>
 
-  <div class="carros">
-    <div class="locacoes">
-      <img src="../../../assets/image/carro.png" alt="">
-      <p>blablablalblalbalbblalbalblab</p>
-    </div>
-  </div>
+<div class="acoes">
+        <button type="button">Alugar</button>
+      </div>
 
-  <div class="carros">
-    <div class="locacoes">
-      <img src="../../../assets/image/carro.png" alt="">
-      <p>blablablalblalbalbblalbalblab</p>
-    </div>
-  </div>
+      </ul>
 
-  <div class="carros">
-    <div class="locacoes">
-      <img src="../../../assets/image/carro.png" alt="">
-      <p>blablablalblalbalbblalbalblab</p>
-    </div>
-  </div>
 
-  <div class="carros">
-    <div class="locacoes">
-      <img src="../../../assets/image/carro.png" alt="">
-      <p>blablablalblalbalbblalbalblab</p>
-    </div>
-  </div>
-
-  <div class="carros">
-    <div class="locacoes">
-      <img src="../../../assets/image/carro.png" alt="">
-      <p>blablablalblalbalbblalbalblab</p>
-    </div>
-  </div>
-
-  <div class="carros">
-    <div class="locacoes">
-      <img src="../../../assets/image/carro.png" alt="">
-      <p>blablablalblalbalbblalbalblab</p>
-    </div>
-  </div>
-
-  <div class="carros">
-    <div class="locacoes">
-      <img src="../../../assets/image/carro.png" alt="">
-      <p>blablablalblalbalbblalbalblab</p>
     </div>
   </div>
 </div>
