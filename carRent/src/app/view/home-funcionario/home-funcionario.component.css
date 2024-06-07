@@ -1,0 +1,32 @@
+.container{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.container-alugueis{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(3,auto);
+}
+h1{
+  width: 100%;
+  background-color: #808080;
+  text-align: center;
+}
+.alugueis{
+  width: 200px;
+  height: 40px;
+  background-color: #d8dbdf;
+  text-align: center;
+}
+
+.alugueis:hover{
+  background-color: #808080;
+  color: #d8dbdf;
+}
+/* pega no next ou errro animaçao */

@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Filtro por usuário</h1>
+
+  <div class="buscar">
+    <label for="buscar">Busque por aqui</label>
+    <input type="search" id="buscar" />
+    <button type="button" (click)="listarFiltroUsuario('$id')">Buscar</button>
+  </div>
+
+  <div class="container-filtro">
+    <div class="filtro" *ngFor="let filtro of filtros">
+      {{ filtro.nome_cliente }}
+      {{ filtro.placa_carro }}
+      {{ filtro.modelo_carro }}
+    </div>
+  </div>
+</div>

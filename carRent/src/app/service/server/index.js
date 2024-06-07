@@ -17,26 +17,24 @@ app.get("/", (req, res) => {
 
 app.post("/cadastro", async (req, res) => {
   // recebendo dados
-  const {cep, estado, sobrenome, nome, cpf, telefone, email, senha } = req.body;
+  const { nome, cpf, telefone, email, senha } =
+    req.body;
 
   const senhaHash = await bcrypt.hash(senha, saltRounds);
 
   const queryCadastro =
-    "INSERT INTO cliente ( cep_cliente, email_cliente, cidade_cliente, estado_cliente, sobrenome_cliente, nome_cliente, celular_cliente, senha_cliente)" +
+    "INSERT INTO cliente (cpf_cliente,email_cliente,nome_cliente, telefone_cliente, senha_cliente)" +
     "VALUES($1, $2, $3, $4, $5)";
 
   try {
-<<<<<<< HEAD
-  const resultado = await pool.query(queryCadastro, [nome, cpf, telefone, email, senhaHash, sobrenome, cep, estado]);
-=======
-    const resultado = await pool.query(queryCadastro, [
-      nome,
-      cpf,
-      telefone,
-      email,
-      senhaHash,
-    ]);
->>>>>>> 3016a9bc2ba42ec43eef36565ea1b78c7d39cada
+
+        const resultado = await pool.query(queryCadastro, [
+          cpf,
+          email,
+          nome,
+          telefone,
+          senhaHash,
+        ]);
     console.log(resultado);
     res.status(201).json(resultado.rows[0]);
   } catch (error) {
@@ -76,75 +74,78 @@ app.post("/login", async (req, res) => {
   }
 });
 // chave
-app.post("/alugar",
-  async (req, res) => {
-    const {
-      email,
-      placa_carro,
-      cpf,
-      data_aluguel,
-      data_inicio,
-      data_fim,
-      status,
-      forma_pagamento,
-    } = req.body;
+app.post("/alugar/:id", async (req, res) => {
+  const { idCarro } = req.body;
 
-    const queryAluguel =
-      "INSERT INTO locacoes (email_usuario, placa_carro, data_aluguel, data_inicio, data_fim,status, forma_pagamento) VALUES ($1,$2,$3,$4,$5,$6,$7)";
+  const { id } = req.params;
+  // const idN = id.t
 
-    // tratar os erros
-
-    // jsonp
-// formas de pagamento
-    try {
-      const resultado = await pool.query(queryAluguel, [email, placa_carro, cpf, data_aluguel, data_inicio, data_fim,status, forma_pagamento]);
-      if(resultado.rows.length > 0){
-res.status(201).json({mensagem: "Aluguel em andamento."})
-        console.log(`Aluguel realizado com sucesso, sendo: ${data_inicio} á ${data_fim}, feito em ${data_aluguel}`)
-      }else{
-        res.status(404).json({mensagem: "Erro ao finalizar o aluguel."})
-      }
-    } catch (err) {
-      res.status(500).json({mensagem: "Falha ao finalizar o aluguel."})
-      console.error(`Houve um erro ao finalizar o aluguel: ${err}`);
-    }
-  });
-
-  app.post("/cancelar", async (req, res) => {
-// só é possível cancelar antes de ter usado o carro,e se ja estiver pago resulta em estorno
-
-const {
-  email,
-  placa_carro,
-  cpf,
-  data_aluguel,
-  data_inicio,
-  data_fim,
-  status,
-  forma_pagamento,
-} = req.body;
-
-// const queryCancelar
-// const queryCancelar = "UPDATE locacoes"
-
-  });
-
-
-
-app.get("/locacoes", async (req,res) => {
-
-  const queryLocacoes = "SELECT * FROM carro;"
+  const queryAluguel =
+    "INSERT INTO locacao_carro (id_carro, id_cliente) VALUES ($1,$2)";
 
   try {
-const { rows } = await pool.query(queryLocacoes);
-console.log(`Listagem ${rows}`);
-res.status(200).json(rows);
+    const resultado = await pool.query(queryAluguel, [id, 1]);
+    res.status(201).json({ mensagem: "Aluguel em andamento." });
   } catch (err) {
-console.error(`Erro ao listar carros do banco de dados ${err}`);
-res.status(500).json({mensagem: 'Erro ao listar.'});
+    console.error(`Erro no aluguel: ${err}`);
+    res.status(500).json({ mensagem: "Erro no aluguel" });
   }
 });
 
+app.get("/locacoes", async (req, res) => {
+  const queryLocacoes = "SELECT * FROM carro;";
+
+  try {
+    const { rows } = await pool.query(queryLocacoes);
+    console.log(`Listagem ${rows}`);
+    res.status(200).json(rows);
+  } catch (err) {
+    console.error(`Erro ao listar carros do banco de dados ${err}`);
+    res.status(500).json({ mensagem: "Erro ao listar." });
+  }
+});
+
+app.get("/alugueis", async (req,res) =>{
+  const queryAlugueis = "SELECT carro.placa_carro, carro.modelo_carro FROM carro INNER JOIN locacao_carro on carro.id_carro = locacao_carro.id_carro";
+
+  try {
+const {rows} = await pool.query(queryAlugueis);
+console.log(rows)
+res.status(200).json(rows)
+  } catch (err) {
+console.error(`Erro na listagem de alugueis: ${err}`);
+res.status(500).json({mensagem: 'Falha na listagem de alugueis.'})
+  }
+});
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta http://localhost:${3000}`);
 });
+
+app.get("/filtros/:id", async (req,res) =>{
+
+  const {idCliente} =req.params;
+
+const queryFiltro = "SELECT cliente.nome_cliente, carro.placa_carro, carro.modelo_carro"+
+"FROM carro"+
+"INNER JOIN locacao_carro ON carro.id_carro = locacao_carro.id_carro"+
+"INNER JOIN cliente ON cliente.id_cliente = locacao_carro.id_cliente WHERE cliente.id_cliente = $1;"
+
+try {
+const resultado = await pool.query(queryFiltro,[idCliente])
+
+if (resultado.rows.length > 0) {
+res.status(200).json(rows)
+}else{
+  res.status(404).json({mensagem: 'Não encontrado.'});
+}
+} catch (err) {
+  console.error('Houve um erro ao buscar o cliente',err)
+res.status(500).json({mensagem: 'Erro ao buscar cliente.'})
+}
+});
+
+// tratar os erros
+// jsonp
+// formas de pagamento
+// const queryCancelar
+// const queryCancelar = "UPDATE locacoes"
