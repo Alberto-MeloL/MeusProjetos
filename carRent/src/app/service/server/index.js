@@ -17,26 +17,34 @@ app.get("/", (req, res) => {
 
 app.post("/cadastro", async (req, res) => {
   // recebendo dados
-  const {cep, estado, sobrenome, nome, cpf, telefone, email, senha } = req.body;
+  const { cep, estado, sobrenome, nome, cidade, telefone, email, senha } =
+    req.body;
 
   const senhaHash = await bcrypt.hash(senha, saltRounds);
 
   const queryCadastro =
     "INSERT INTO cliente ( cep_cliente, email_cliente, cidade_cliente, estado_cliente, sobrenome_cliente, nome_cliente, celular_cliente, senha_cliente)" +
-    "VALUES($1, $2, $3, $4, $5)";
+    "VALUES($1, $2, $3, $4, $5, $6, $7, $8)";
 
   try {
-<<<<<<< HEAD
-  const resultado = await pool.query(queryCadastro, [nome, cpf, telefone, email, senhaHash, sobrenome, cep, estado]);
-=======
     const resultado = await pool.query(queryCadastro, [
-      nome,
-      cpf,
-      telefone,
+      cep,
       email,
+      cidade,
+      estado,
+      sobrenome,
+      nome,
+      telefone,
       senhaHash,
     ]);
->>>>>>> 3016a9bc2ba42ec43eef36565ea1b78c7d39cada
+    // =======
+    //     const resultado = await pool.query(queryCadastro, [
+    //       nome,
+    //       cpf,
+    //       telefone,
+    //       email,
+    //       senhaHash,
+    //     ]);
     console.log(resultado);
     res.status(201).json(resultado.rows[0]);
   } catch (error) {
@@ -61,7 +69,7 @@ app.post("/login", async (req, res) => {
 
       console.log("A senha é válida.");
 
-      if (email && senhaValida) {
+      if (senhaValida) {
         console.log("Redirecionando...");
         res.status(200).json({ mensagem: "Login bem sucedido." });
       } else {
@@ -76,72 +84,46 @@ app.post("/login", async (req, res) => {
   }
 });
 // chave
-app.post("/alugar",
-  async (req, res) => {
-    const {
-      email,
-      placa_carro,
-      cpf,
-      data_aluguel,
-      data_inicio,
-      data_fim,
-      status,
-      forma_pagamento,
-    } = req.body;
-
-    const queryAluguel =
-      "INSERT INTO locacoes (email_usuario, placa_carro, data_aluguel, data_inicio, data_fim,status, forma_pagamento) VALUES ($1,$2,$3,$4,$5,$6,$7)";
-
-    // tratar os erros
-
-    // jsonp
-// formas de pagamento
-    try {
-      const resultado = await pool.query(queryAluguel, [email, placa_carro, cpf, data_aluguel, data_inicio, data_fim,status, forma_pagamento]);
-      if(resultado.rows.length > 0){
-res.status(201).json({mensagem: "Aluguel em andamento."})
-        console.log(`Aluguel realizado com sucesso, sendo: ${data_inicio} á ${data_fim}, feito em ${data_aluguel}`)
-      }else{
-        res.status(404).json({mensagem: "Erro ao finalizar o aluguel."})
-      }
-    } catch (err) {
-      res.status(500).json({mensagem: "Falha ao finalizar o aluguel."})
-      console.error(`Houve um erro ao finalizar o aluguel: ${err}`);
-    }
-  });
-
-  app.post("/cancelar", async (req, res) => {
-// só é possível cancelar antes de ter usado o carro,e se ja estiver pago resulta em estorno
-
-const {
-  email,
-  placa_carro,
-  cpf,
-  data_aluguel,
-  data_inicio,
-  data_fim,
-  status,
-  forma_pagamento,
-} = req.body;
-
-// const queryCancelar
-// const queryCancelar = "UPDATE locacoes"
-
-  });
-
-
-
-app.get("/locacoes", async (req,res) => {
-
-  const queryLocacoes = "SELECT * FROM carro;"
+app.post("/alugar/:id", async (req, res) => {
+  const { dataLocacao, dataDevolucao, valorTotal } = req.body;
+  const id = req.params.id;
+  console.log('requisicao do body',req.body);
+  console.log(id);
+  const queryAluguel =
+    "INSERT INTO locacao (data_locacao, data_devolucao, valor_total, id_cliente, id_carro) VALUES ($1,$2,$3,$4,$5)";
 
   try {
-const { rows } = await pool.query(queryLocacoes);
-console.log(`Listagem ${rows}`);
-res.status(200).json(rows);
+    const resultado = await pool.query(queryAluguel, [
+      '20-5-2024',
+      '20-12-2005',
+      valorTotal,
+      1,
+      id,
+    ]);
+    console.log(resultado.fields);
+
+    if (resultado.rows.length > 0) {
+      console.log("Aluguel em andamento.");
+      res.status(201).json(resultado.rows);
+    } else {
+      res.status(404).json({ mensagem: "Oops, algo deu errado" });
+    }
   } catch (err) {
-console.error(`Erro ao listar carros do banco de dados ${err}`);
-res.status(500).json({mensagem: 'Erro ao listar.'});
+    console.error(`Erro ao finalizar o aluguel ${err}`);
+    res.status(500).json({ mensagem: "Erro ao alugar." });
+  }
+});
+
+app.get("/locacoes", async (req, res) => {
+  const queryLocacoes = "SELECT * FROM carro;";
+
+  try {
+    const { rows } = await pool.query(queryLocacoes);
+    console.log(`Listagem ${rows}`);
+    res.status(200).json(rows);
+  } catch (err) {
+    console.error(`Erro ao listar carros do banco de dados ${err}`);
+    res.status(500).json({ mensagem: "Erro ao listar." });
   }
 });
 

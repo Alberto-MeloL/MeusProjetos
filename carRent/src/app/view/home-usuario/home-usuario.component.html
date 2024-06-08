@@ -12,12 +12,10 @@
         <li>{{carro.placa_carro}}</li>
         <li>{{carro.ano_carro}}</li>
         <li>{{carro.disponibilidade_carro}}</li>
-
-<div class="acoes">
-        <button type="button">Alugar</button>
-      </div>
-
       </ul>
+      <div class="acoes">
+              <button type="button" (click)="alugarCarro(carro.id_carro)">Alugar</button>
+            </div>
 
 
     </div>

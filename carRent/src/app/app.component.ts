@@ -5,6 +5,7 @@ import { HomeComponent } from './template/home/home.component';
 import { CadastroService} from './service/cadastro/cadastro.service';
 import { LoginService } from './service/login/login.service';
 import {CarrosService} from './service/carros.service';
+import { AlugarService } from './service/alugar.service';
 
 // lógica dos imports
 
@@ -14,7 +15,7 @@ import {CarrosService} from './service/carros.service';
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
     // para que serve o providers
-    providers: [CadastroService, LoginService, CarrosService],
+    providers: [CadastroService, LoginService, CarrosService, AlugarService],
     // aqui defino meus componentes
     imports: [RouterOutlet, HomeComponent, HttpClientModule]
 })

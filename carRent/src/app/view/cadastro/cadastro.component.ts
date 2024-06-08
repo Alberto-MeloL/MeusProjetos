@@ -26,7 +26,6 @@ export class CadastroComponent {
       estado: [''],
       senha: [''],
       telefone: [''],
-      cpf: [''],
       cidade: ['']
     });
   }
