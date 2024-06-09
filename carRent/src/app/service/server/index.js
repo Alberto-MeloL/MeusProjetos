@@ -17,34 +17,25 @@ app.get("/", (req, res) => {
 
 app.post("/cadastro", async (req, res) => {
   // recebendo dados
-  const { cep, estado, sobrenome, nome, cidade, telefone, email, senha } =
-    req.body;
+
+  const { nome, cpf, telefone, email, senha } = req.body;
 
   const senhaHash = await bcrypt.hash(senha, saltRounds);
 
   const queryCadastro =
-    "INSERT INTO cliente ( cep_cliente, email_cliente, cidade_cliente, estado_cliente, sobrenome_cliente, nome_cliente, celular_cliente, senha_cliente)" +
-    "VALUES($1, $2, $3, $4, $5, $6, $7, $8)";
+    "INSERT INTO cliente (cpf_cliente,email_cliente,nome_cliente, telefone_cliente, senha_cliente)" +
+    "VALUES($1, $2, $3, $4, $5)";
 
   try {
-    const resultado = await pool.query(queryCadastro, [
-      cep,
-      email,
-      cidade,
-      estado,
-      sobrenome,
-      nome,
-      telefone,
-      senhaHash,
-    ]);
-    // =======
-    //     const resultado = await pool.query(queryCadastro, [
-    //       nome,
-    //       cpf,
-    //       telefone,
-    //       email,
-    //       senhaHash,
-    //     ]);
+
+        const resultado = await pool.query(queryCadastro, [
+          cpf,
+          email,
+          nome,
+          telefone,
+          senhaHash,
+        ]);
+
     console.log(resultado);
     res.status(201).json(resultado.rows[0]);
   } catch (error) {
@@ -85,32 +76,21 @@ app.post("/login", async (req, res) => {
 });
 // chave
 app.post("/alugar/:id", async (req, res) => {
-  const { dataLocacao, dataDevolucao, valorTotal } = req.body;
-  const id = req.params.id;
-  console.log('requisicao do body',req.body);
-  console.log(id);
+
+
+  const { id } = req.params;
+
   const queryAluguel =
-    "INSERT INTO locacao (data_locacao, data_devolucao, valor_total, id_cliente, id_carro) VALUES ($1,$2,$3,$4,$5)";
+    "INSERT INTO locacao_carro (id_carro, id_cliente) VALUES ($1,$2)";
 
   try {
-    const resultado = await pool.query(queryAluguel, [
-      '20-5-2024',
-      '20-12-2005',
-      valorTotal,
-      1,
-      id,
-    ]);
-    console.log(resultado.fields);
-
-    if (resultado.rows.length > 0) {
-      console.log("Aluguel em andamento.");
-      res.status(201).json(resultado.rows);
-    } else {
-      res.status(404).json({ mensagem: "Oops, algo deu errado" });
-    }
+    const resultado = await pool.query(queryAluguel, [id, 1]);
+    console.log(resultado.rows);
+    res.status(201).json({ mensagem: "Aluguel em andamento." });
   } catch (err) {
-    console.error(`Erro ao finalizar o aluguel ${err}`);
-    res.status(500).json({ mensagem: "Erro ao alugar." });
+    console.error(`Erro no aluguel: ${err}`);
+    res.status(500).json({ mensagem: "Erro no aluguel" });
+
   }
 });
 
@@ -127,6 +107,51 @@ app.get("/locacoes", async (req, res) => {
   }
 });
 
+app.get("/alugueis", async (req,res) =>{
+  const queryAlugueis = "SELECT carro.placa_carro, carro.modelo_carro FROM carro INNER JOIN locacao_carro on carro.id_carro = locacao_carro.id_carro";
+
+  try {
+const {rows} = await pool.query(queryAlugueis);
+console.log(rows)
+res.status(200).json(rows)
+  } catch (err) {
+console.error(`Erro na listagem de alugueis: ${err}`);
+res.status(500).json({mensagem: 'Falha na listagem de alugueis.'})
+  }
+});
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta http://localhost:${3000}`);
 });
+
+app.get("/filtros/:id", async (req,res) =>{
+
+  // estarindo o parametro, tem que ser o nome dele
+  const {id} = req.params;
+
+const queryFiltro = `SELECT cliente.nome_cliente, carro.placa_carro, carro.modelo_carro
+FROM carro
+INNER JOIN locacao_carro ON carro.id_carro = locacao_carro.id_carro
+INNER JOIN cliente ON cliente.id_cliente = locacao_carro.id_cliente WHERE cliente.id_cliente = $1;`;
+
+try {
+const {rows} = await pool.query(queryFiltro,[id])
+
+
+console.log(rows);
+if (rows.length > 0) {
+res.status(200).json(rows)
+console.log('Filtro realizado com sucesso.');
+}else{
+  res.status(404).json({mensagem: 'Não encontrado.'});
+}
+} catch (err) {
+  console.error('Houve um erro ao buscar o cliente',err)
+res.status(500).json({mensagem: 'Erro ao buscar cliente.'})
+}
+});
+
+// tratar os erros
+// jsonp
+// formas de pagamento
+// const queryCancelar
+// const queryCancelar = "UPDATE locacoes"

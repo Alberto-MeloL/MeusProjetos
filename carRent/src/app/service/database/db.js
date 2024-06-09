@@ -6,7 +6,7 @@ const pool = new Pool({
 user: 'postgres',
 password: 'postgres1',
 host: 'localhost',
-database: 'locadora',
+database: 'locadora_ofc',
 port: 5432
 });
 

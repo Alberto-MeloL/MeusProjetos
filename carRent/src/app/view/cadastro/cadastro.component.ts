@@ -20,13 +20,10 @@ export class CadastroComponent {
   ) {
     this.formCliente = this.formBuilder.group({
       nome: [''],
-      sobrenome: [''],
       email: [''],
-      cep: [''],
-      estado: [''],
-      senha: [''],
+      cpf: [''],
       telefone: [''],
-      cidade: ['']
+      senha: [''],
     });
   }
 
