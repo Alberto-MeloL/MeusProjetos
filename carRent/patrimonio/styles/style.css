@@ -1,0 +1,188 @@
+:root {
+            --preto: #000000;
+            --cinza: #80808017;
+            --branco: #ffffff;
+            --verde: #37c237d8;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .fundo {
+            width: 100%;
+            height: 100vh;
+            display: none;
+            background-color: var(--cinza);
+            z-index: 9;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            z-index: 11;
+        }
+
+        header {
+            width: 95%;
+            height: 15vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            width: 10%;
+            height: 90%;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--cinza);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 00px;
+        }
+
+        .menu-solicitacoes {
+            width: 100px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .solicitacoes {
+            width: 50%;
+            height: 100vh;
+            display: none;
+            position: fixed;
+            left: 0;
+            background-color: var(--branco);
+            border-radius: 0% 5% 5% 0%;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .menu-linhas {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .menu-linhas span {
+            background-color: var(--preto);
+            height: 2px;
+            margin-bottom: 3px;
+        }
+
+        .menu-linhas span:nth-child(1) {
+            width: 50px;
+        }
+
+        .menu-linhas span:nth-child(2) {
+            width: 35px;
+        }
+
+        .menu-linhas span:nth-child(3) {
+            width: 20px;
+        }
+
+        .buscas {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .barra-pesquisa {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .acoes {
+            width: 30%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .acoes button {
+            width: 100%;
+            background-color: var(--verde);
+            color: var(--branco);
+            border: 1px solid var(--preto);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .acoes-visivel {
+            width: 100%;
+            height: 100%;
+            background-color: var(--cinza);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            /* porque so funciona o alinhamento com o justify-content> conter */
+        }
+
+        .add-administrador {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .add-funcionarios {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .acoes-visivel button {
+            width: 200px;
+            height: auto;
+        }
+
+        .container-estrutura {
+            width: 100%;
+            height: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-blocos {
+            width: 80%;
+            height: 80%;
+            display: grid;
+            align-items: center;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .bloco-a,
+        .bloco-b,
+        .bloco-c,
+        .bloco-d {
+            background-color: var(--cinza);
+            border: 1px solid var(--preto);
+            text-align: center;
+            padding: 20px;
+        }
