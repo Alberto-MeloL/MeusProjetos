@@ -1,6 +1,8 @@
-import { Component, OnInit} from '@angular/core';
-import {FuncionarioService} from '../../service/funcionarios/funcionario.service';
-import {CommonModule} from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FuncionarioService } from '../../service/funcionarios/funcionario.service';
+import { FinalizarAlugueisService } from '../../service/finalizar-alugueis/finalizar-alugueis.service';
+
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home-funcionario',
@@ -11,11 +13,16 @@ import {CommonModule} from '@angular/common';
 })
 export class HomeFuncionarioComponent implements OnInit {
   alugueis: any[] = [];
-  constructor(private funcionarioService: FuncionarioService) {}
+
+  constructor(
+    private funcionarioService: FuncionarioService,
+    private finalizarAlugueisService: FinalizarAlugueisService
+  ) {}
 
   ngOnInit(): void {
     this.listarAlugueis();
   }
+
   listarAlugueis(): void {
     this.funcionarioService.listarAlugueis().subscribe(
       (alugueis: any[]) => {
@@ -28,5 +35,16 @@ export class HomeFuncionarioComponent implements OnInit {
         console.error('Erro ao listar alugueis:', error);
       }
     );
+  }
+
+  finalizarAlgueis(): void {
+    this.finalizarAlugueisService.finalizarAlgueis().subscribe({
+      next: (n) => {
+        console.log(n);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 }

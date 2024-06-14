@@ -9,21 +9,31 @@ import {CarrosService} from './service/carros/carros.service';
 import {AluguelService} from './service/aluguel/aluguel.service';
 import {FuncionarioService} from './service/funcionarios/funcionario.service';
 import {FiltroService} from './service/filtro-usuario/filtro.service';
-
+import {FiltrosDatasService} from './service/filtros-datas/filtros-datas.service';
+import { FinalizarAlugueisService } from './service/finalizar-alugueis/finalizar-alugueis.service';
 
 // lógica dos imports
 
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css',
-    // para que serve o providers
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
+  // para que serve o providers
 
-    providers: [CadastroService, LoginService, CarrosService, AluguelService,FuncionarioService, FiltroService],
+  providers: [
+    CadastroService,
+    LoginService,
+    CarrosService,
+    AluguelService,
+    FuncionarioService,
+    FiltroService,
+    FiltrosDatasService,
+    FinalizarAlugueisService
+  ],
 
-    // aqui defino meus componentes
-    imports: [RouterOutlet, HomeComponent, HttpClientModule]
+  // aqui defino meus componentes
+  imports: [RouterOutlet, HomeComponent, HttpClientModule],
 })
 export class AppComponent {
   title = 'carRent';

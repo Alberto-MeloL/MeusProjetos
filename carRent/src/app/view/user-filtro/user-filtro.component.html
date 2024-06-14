@@ -5,6 +5,11 @@
     <label for="buscar">Busque por aqui</label>
     <input type="search" id="buscar" #buscarInput>
     <button type="button" (click)="listarFiltroUsuario(buscarInput.value)">Buscar</button>
+    <label for="datas">Busque por datas</label>
+    <input type="date" id="datas"#dataLocacao>
+    <input type="date" id="datas" #dataDevolucao>
+    <button type="button" (click)="listarDatas(dataLocacao.value, dataDevolucao.value)">Buscar</button>
+
   </div>
 
   <div class="container-filtro">
@@ -14,4 +19,16 @@
       {{ filtro.modelo_carro }}
     </div>
   </div>
+
+   <div class="container-datas" *ngIf="datas && datas.length > 0">
+    <div class="datas" *ngFor="let data of datas; else semDatas">
+      {{ data.nome_carro }}
+      {{ data.nome_cliente }}
+      {{ data.data_locacao }}
+      {{ data.data_devolucao }}
+    </div>
+  </div>
+  <ng-template #semDatas>
+    <h1>Não há alugueis, ou não foi específicado um período.</h1>
+  </ng-template>
 </div>

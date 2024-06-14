@@ -1,11 +1,21 @@
 <div class="container">
-
-
+  <!-- bastaria o .length -->
   <h1>Carros alugados</h1>
-<div class="container-alugueis">
-  <div class="alugueis" *ngFor="let aluguel of alugueis">
-  {{aluguel.placa_carro}}
-  {{aluguel.modelo_carro}}
+    <button type="button" (click)="finalizarAlgueis()">Alugueis Finalizados</button>
+
+  <div
+    class="container-alugueis"
+    *ngIf="alugueis && alugueis.length > 0; else semAlugueis"
+  >
+    <div class="alugueis" *ngFor="let aluguel of alugueis">
+      {{ aluguel.placa_carro }}
+      {{ aluguel.modelo_carro }}
+    </div>
   </div>
-  </div>
+
+  <!-- poderia ser outro nome ou e boa pratica -->
+  <ng-template #semAlugueis>
+    <h1>Não há nada de alugueis para exibir</h1>
+  </ng-template>
+
 </div>
