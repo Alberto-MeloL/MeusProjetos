@@ -11,7 +11,7 @@ export class FiltrosDatasService {
 
   constructor(private http: HttpClient) {}
 
-  listarDatas(data_locacao: string, datalocacao:string): Observable<string[]> {
-    return this.http.get<string[]>(this.url);
+  listarDatas(dataLocacao: string, dataDevolucao:string): Observable<string[]> {
+    return this.http.post<string[]>(this.url,{dataLocacao,dataDevolucao});
   }
 }

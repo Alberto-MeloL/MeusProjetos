@@ -75,17 +75,19 @@ app.post("/login", async (req, res) => {
 });
 // chave
 app.post("/alugar/:id", async (req, res) => {
+  const dataDv = new Date()
+  const dataDl = new Date()
   const { id } = req.params;
 
   const queryAluguel =
     "INSERT INTO locacao_carro (id_carro, id_cliente) VALUES ($1,$2)";
 
   const queryAluguelDatas =
-    "INSERT INTO datas_locacao ( id_cliente, id_carro) VALUES ($1,$2)";
+    "INSERT INTO datas_locacao (data_locacao, data_devolucao, id_cliente, id_carro) VALUES ($1,$2,$3,$4)";
 
   try {
     const resultado = await pool.query(queryAluguel, [id, 1]);
-    const subResultado = await pool.query(queryAluguelDatas, [1, id]);
+    const subResultado = await pool.query(queryAluguelDatas, [dataDl,dataDv,1, id]);
     console.log(resultado.rows);
     console.log(subResultado);
     res.status(201).json({ mensagem: "Aluguel em andamento." });
@@ -158,8 +160,7 @@ INNER JOIN cliente ON cliente.id_cliente = locacao_carro.id_cliente WHERE client
   }
 });
 
-app.get("/filtros-datas"),
-  async (req, res) => {
+app.get("/filtros-datas", async (req, res) => {
     const { data_locacao, data_devolucao } = req.body;
 
     console.log(req.body);
@@ -191,7 +192,7 @@ datas_locacao.data_locacao = $1 AND datas_locacao.data_devolucao = $2;`;
     } catch (err) {
       console.error(`Houve um erro, verifique as datas ${err}`);
     }
-  };
+  });
 
   app.post("/finalizar", async (req,res) =>{
 const queryFinalizar = "DELETE FROM datas_locacao"
@@ -206,8 +207,5 @@ console.error('Erro ao finalizar alugueis',err)
 res.status(500).json({mensagem: 'Erro'})
 }
   });
-// tratar os erros
 // jsonp
-// formas de pagamento
-// const queryCancelar
-// const queryCancelar = "UPDATE locacoes"
+
