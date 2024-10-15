@@ -1,0 +1,13 @@
+.container-formulario {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  max-height: 600px;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+form {
+  height: 100%;
+}

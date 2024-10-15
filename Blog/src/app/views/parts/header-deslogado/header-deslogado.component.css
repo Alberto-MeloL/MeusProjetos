@@ -1,0 +1,100 @@
+header {
+  width: 100%;
+  height: 20vh;
+}
+
+nav {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container-header {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* efeito balao no texto */
+.textos {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.textos span{
+  position: relative;
+}
+/* dois :: ou um : */
+.textos span::before{
+content: "";
+color: var(--preto);
+animation: palavras 25s infinite;
+filter: blur(2px);
+}
+
+.autenticacao {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--verde);
+  clip-path: polygon(
+    50% 22%,
+    81% 18%,
+    97% 37%,
+    90% 62%,
+    63% 67%,
+    41% 70%,
+    25% 80%,
+    14% 63%,
+    11% 35%,
+    25% 17%
+  );
+}
+.titulo {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+.links {
+  width: 100%;
+  max-width: 100px;
+  background-color: var(--preto);
+  border-radius: 20px;
+  padding: 10px;
+  text-decoration: none;
+  color: var(--branco);
+  text-align: center;
+}
+
+
+@keyframes palavras {
+0%,20%{
+  content: "Cada palavra escrita é uma nova chance de compartilhar experiências e inspirar o mundo ao nosso redor.";
+filter: blur(0);
+}
+21%, 40%{
+  content: "Aqui, histórias encontram corações e reflexões se transformam em sementes de esperança e crescimento.";
+filter: blur(0);
+}
+41%, 60%{
+  content: "A leitura abre portas para novas perspectivas, e cada blog é uma jornada para despertar o melhor em nós.";
+filter: blur(0);
+}
+61%, 80%{
+  content: "Escrever é um ato de cura e conexão, onde a alma se expressa e o leitor se encontra.";
+filter: blur(0);
+}
+81%, 100%{
+  content: "Faça parte!";
+filter: blur(0);
+}
+}

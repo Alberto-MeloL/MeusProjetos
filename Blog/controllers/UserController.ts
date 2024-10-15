@@ -3,6 +3,8 @@ import { TypeUser } from '../models/User';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import pool from '../config/database';
+import dotenv from 'dotenv';
+dotenv.config();
 
 // jwt ao lado do serve/client
 class UserController {
@@ -43,14 +45,9 @@ class UserController {
 
         const validPassword = await bcrypt.compare(password, user.password);
 
-
         if (validPassword) {
-          const tokenData = {
-            userId: user.id,
-            email: user.email,
-          };
-
-          // const token = jwt
+          // chama o método para gerar o token
+          this.generatedToken(user.id, user.email);
         }
       }
 
@@ -59,4 +56,24 @@ class UserController {
       throw new Error('Credenciais inválidas' + err);
     }
   }
+  // le em ordem??
+  async generatedToken(userId: number, email: string): Promise<string> {
+    const tokenData = {
+      userId: userId,
+      email: email,
+    };
+
+    // verifica se a chave secreta está presente
+    const SECRET_KEY = process.env['SECRET_KEY'];
+
+    if (!SECRET_KEY) {
+      throw new Error('Por favor defina a chave de segurança.');
+    }
+
+    // gerar o token
+    const token = jwt.sign(tokenData, SECRET_KEY, { expiresIn: '1h' });
+
+    return token;
+  }
+ 
 }
